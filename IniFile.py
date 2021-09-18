@@ -1,31 +1,7 @@
-import re
+class Ini :
+    def __init__(self):
+        self.content = {}
 
-
-class IniFile :
-    def __init__(self , file:str):
-        self.content:dict =  {}
-        self.fileAsLines = file.splitlines()
-
-        self.StoreInformation(0 , '')
-
-
-    def StoreInformation(self, lineNumber:int , sectionName:str ):
-        if lineNumber == len(self.fileAsLines):
-            return
-        line = self.fileAsLines[lineNumber]
-        sectionInLine = re.search("\[(.*?)\]" , line)
-
-        if sectionInLine != None:
-            self.content[sectionInLine]={}
-            self.StoreInformation(lineNumber +1 , sectionInLine)
-        else :
-            ind  = line.find('=')
-            if ind  == -1 :
-                self.StoreInformation(lineNumber +1 , sectionName)
-            name = line[:ind]
-            value = line[ind+1:]
-            self.content[sectionName][name]=value
-            self.StoreInformation(lineNumber+1 ,sectionName)
 
     def HasSection(self , section):
         try:
@@ -62,6 +38,10 @@ class IniFile :
             return self.content[section]
         else:
             return None
+
+    def SetSection(self , section):
+        self.content[section]={}
+
 
     def SetProperty(self ,section ,*property):
         if self.HasSection(section):
