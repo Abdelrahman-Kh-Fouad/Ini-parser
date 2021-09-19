@@ -99,7 +99,7 @@ class Ini :
         self.content[section]={}
 
 
-    def SetProperty(self ,section:str ,property:tuple):
+    def SetProperty(self ,section:str ,property):
         '''Add property to particular section.
 
             Arguments:
@@ -111,6 +111,7 @@ class Ini :
         '''
 
         if self.HasSection(section):
+            #print(property[0] , property[1])
             self.content[section][property[0]] = property[1]
             return True
         else :
@@ -129,8 +130,8 @@ class Ini :
         result:str =""
         for section in self.content.keys():
             result += f'[{section}]\n'
-            for property in self.content[section].values():
-                result += f'{property[0]}={property[1]}\n'
+            for propertyName , propertyValue in self.content[section].items():
+                result += f'{propertyName}={propertyValue}\n'
         return result
 
 
