@@ -127,7 +127,7 @@
         self.content[section]={}
 
 
-    def SetProperty(self ,section:str ,property:tuple):
+    def SetProperty(self ,section:str ,property):
         &#39;&#39;&#39;Add property to particular section.
 
             Arguments:
@@ -139,6 +139,7 @@
         &#39;&#39;&#39;
 
         if self.HasSection(section):
+            #print(property[0] , property[1])
             self.content[section][property[0]] = property[1]
             return True
         else :
@@ -157,8 +158,8 @@
         result:str =&#34;&#34;
         for section in self.content.keys():
             result += f&#39;[{section}]\n&#39;
-            for property in self.content[section].values():
-                result += f&#39;{property[0]}={property[1]}\n&#39;
+            for propertyName , propertyValue in self.content[section].items():
+                result += f&#39;{propertyName}={propertyValue}\n&#39;
         return result</code></pre>
 </details>
 </section>
@@ -281,7 +282,7 @@
         self.content[section]={}
 
 
-    def SetProperty(self ,section:str ,property:tuple):
+    def SetProperty(self ,section:str ,property):
         &#39;&#39;&#39;Add property to particular section.
 
             Arguments:
@@ -293,6 +294,7 @@
         &#39;&#39;&#39;
 
         if self.HasSection(section):
+            #print(property[0] , property[1])
             self.content[section][property[0]] = property[1]
             return True
         else :
@@ -311,8 +313,8 @@
         result:str =&#34;&#34;
         for section in self.content.keys():
             result += f&#39;[{section}]\n&#39;
-            for property in self.content[section].values():
-                result += f&#39;{property[0]}={property[1]}\n&#39;
+            for propertyName , propertyValue in self.content[section].items():
+                result += f&#39;{propertyName}={propertyValue}\n&#39;
         return result</code></pre>
 </details>
 <h3>Methods</h3>
@@ -469,7 +471,7 @@
 </details>
 </dd>
 <dt id="IniParser.IniFile.Ini.SetProperty"><code class="name flex">
-<span>def <span class="ident">SetProperty</span></span>(<span>self, section: str, property: tuple)</span>
+<span>def <span class="ident">SetProperty</span></span>(<span>self, section: str, property)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Add property to particular section.</p>
@@ -482,7 +484,7 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def SetProperty(self ,section:str ,property:tuple):
+<pre><code class="python">def SetProperty(self ,section:str ,property):
     &#39;&#39;&#39;Add property to particular section.
 
         Arguments:
@@ -494,6 +496,7 @@
     &#39;&#39;&#39;
 
     if self.HasSection(section):
+        #print(property[0] , property[1])
         self.content[section][property[0]] = property[1]
         return True
     else :
@@ -542,8 +545,8 @@
     result:str =&#34;&#34;
     for section in self.content.keys():
         result += f&#39;[{section}]\n&#39;
-        for property in self.content[section].values():
-            result += f&#39;{property[0]}={property[1]}\n&#39;
+        for propertyName , propertyValue in self.content[section].items():
+            result += f&#39;{propertyName}={propertyValue}\n&#39;
     return result</code></pre>
 </details>
 </dd>

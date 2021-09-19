@@ -37,7 +37,7 @@ class ParseIni:
     def ReadSection(self , line:str ):
         '''
         Read Section name from line
-        Arg:
+        Arguments:
             line:string -- line
         '''
         sectionInLine = line[1:len(line) - 1]

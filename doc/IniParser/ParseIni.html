@@ -49,24 +49,43 @@ class ParseIni:
         line = self.fileAsLines[lineNumber]
         line = line.strip()
 
-        print(line)
         if line == &#39;&#39; or line.startswith(&#34;;&#34;) or line.startswith(&#34;#&#34;):
             self.Parse(lineNumber +1 , sectionName)
 
         if line.startswith(&#34;[&#34;)  and line.endswith(&#34;]&#34;):
-            sectionInLine = line[1:len(line)-1]
-            self.iniResult.SetSection(sectionInLine)
-
-            self.Parse(lineNumber +1 , sectionInLine)
+            self.Parse(lineNumber +1 , self.ReadSection(line))
 
         if line.find(&#39;=&#39;)!=-1:
             ind  = line.find(&#39;=&#39;)
             if ind  == -1 :
                 self.Parse(lineNumber +1 , sectionName)
-            name = line[:ind].strip()
-            value = line[ind+1:].strip()
-            self.iniResult.SetProperty(sectionName , (name ,value))
-            self.Parse(lineNumber+1 ,sectionName)</code></pre>
+            self.ReadProperty(line , sectionName)
+            self.Parse(lineNumber+1 ,sectionName)
+
+    def ReadSection(self , line:str ):
+        &#39;&#39;&#39;
+        Read Section name from line
+        Arguments:
+            line:string -- line
+        &#39;&#39;&#39;
+        sectionInLine = line[1:len(line) - 1]
+        self.iniResult.SetSection(sectionInLine)
+        return sectionInLine
+
+
+    def ReadProperty(self ,line:str , sectionName:str):
+        &#39;&#39;&#39;
+        Read Property from line.
+        Argument:
+            line:string -- line.
+            sectionName:string -- particular section to add our property.
+
+        &#39;&#39;&#39;
+        ind = line.find(&#39;=&#39;)
+        name = line[:ind].strip()
+        value = line[ind + 1:].strip()
+
+        self.iniResult.SetProperty(sectionName, (name, value))</code></pre>
 </details>
 </section>
 <section>
@@ -110,24 +129,43 @@ class ParseIni:
         line = self.fileAsLines[lineNumber]
         line = line.strip()
 
-        print(line)
         if line == &#39;&#39; or line.startswith(&#34;;&#34;) or line.startswith(&#34;#&#34;):
             self.Parse(lineNumber +1 , sectionName)
 
         if line.startswith(&#34;[&#34;)  and line.endswith(&#34;]&#34;):
-            sectionInLine = line[1:len(line)-1]
-            self.iniResult.SetSection(sectionInLine)
-
-            self.Parse(lineNumber +1 , sectionInLine)
+            self.Parse(lineNumber +1 , self.ReadSection(line))
 
         if line.find(&#39;=&#39;)!=-1:
             ind  = line.find(&#39;=&#39;)
             if ind  == -1 :
                 self.Parse(lineNumber +1 , sectionName)
-            name = line[:ind].strip()
-            value = line[ind+1:].strip()
-            self.iniResult.SetProperty(sectionName , (name ,value))
-            self.Parse(lineNumber+1 ,sectionName)</code></pre>
+            self.ReadProperty(line , sectionName)
+            self.Parse(lineNumber+1 ,sectionName)
+
+    def ReadSection(self , line:str ):
+        &#39;&#39;&#39;
+        Read Section name from line
+        Arguments:
+            line:string -- line
+        &#39;&#39;&#39;
+        sectionInLine = line[1:len(line) - 1]
+        self.iniResult.SetSection(sectionInLine)
+        return sectionInLine
+
+
+    def ReadProperty(self ,line:str , sectionName:str):
+        &#39;&#39;&#39;
+        Read Property from line.
+        Argument:
+            line:string -- line.
+            sectionName:string -- particular section to add our property.
+
+        &#39;&#39;&#39;
+        ind = line.find(&#39;=&#39;)
+        name = line[:ind].strip()
+        value = line[ind + 1:].strip()
+
+        self.iniResult.SetProperty(sectionName, (name, value))</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
@@ -157,24 +195,67 @@ class ParseIni:
     line = self.fileAsLines[lineNumber]
     line = line.strip()
 
-    print(line)
     if line == &#39;&#39; or line.startswith(&#34;;&#34;) or line.startswith(&#34;#&#34;):
         self.Parse(lineNumber +1 , sectionName)
 
     if line.startswith(&#34;[&#34;)  and line.endswith(&#34;]&#34;):
-        sectionInLine = line[1:len(line)-1]
-        self.iniResult.SetSection(sectionInLine)
-
-        self.Parse(lineNumber +1 , sectionInLine)
+        self.Parse(lineNumber +1 , self.ReadSection(line))
 
     if line.find(&#39;=&#39;)!=-1:
         ind  = line.find(&#39;=&#39;)
         if ind  == -1 :
             self.Parse(lineNumber +1 , sectionName)
-        name = line[:ind].strip()
-        value = line[ind+1:].strip()
-        self.iniResult.SetProperty(sectionName , (name ,value))
+        self.ReadProperty(line , sectionName)
         self.Parse(lineNumber+1 ,sectionName)</code></pre>
+</details>
+</dd>
+<dt id="IniParser.ParseIni.ParseIni.ReadProperty"><code class="name flex">
+<span>def <span class="ident">ReadProperty</span></span>(<span>self, line: str, sectionName: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read Property from line.</p>
+<h2 id="argument">Argument</h2>
+<p>line:string &ndash; line.
+sectionName:string &ndash; particular section to add our property.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ReadProperty(self ,line:str , sectionName:str):
+    &#39;&#39;&#39;
+    Read Property from line.
+    Argument:
+        line:string -- line.
+        sectionName:string -- particular section to add our property.
+
+    &#39;&#39;&#39;
+    ind = line.find(&#39;=&#39;)
+    name = line[:ind].strip()
+    value = line[ind + 1:].strip()
+
+    self.iniResult.SetProperty(sectionName, (name, value))</code></pre>
+</details>
+</dd>
+<dt id="IniParser.ParseIni.ParseIni.ReadSection"><code class="name flex">
+<span>def <span class="ident">ReadSection</span></span>(<span>self, line: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read Section name from line</p>
+<h2 id="arguments">Arguments</h2>
+<p>line:string &ndash; line</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ReadSection(self , line:str ):
+    &#39;&#39;&#39;
+    Read Section name from line
+    Arguments:
+        line:string -- line
+    &#39;&#39;&#39;
+    sectionInLine = line[1:len(line) - 1]
+    self.iniResult.SetSection(sectionInLine)
+    return sectionInLine</code></pre>
 </details>
 </dd>
 </dl>
@@ -199,6 +280,8 @@ class ParseIni:
 <h4><code><a title="IniParser.ParseIni.ParseIni" href="#IniParser.ParseIni.ParseIni">ParseIni</a></code></h4>
 <ul class="">
 <li><code><a title="IniParser.ParseIni.ParseIni.Parse" href="#IniParser.ParseIni.ParseIni.Parse">Parse</a></code></li>
+<li><code><a title="IniParser.ParseIni.ParseIni.ReadProperty" href="#IniParser.ParseIni.ParseIni.ReadProperty">ReadProperty</a></code></li>
+<li><code><a title="IniParser.ParseIni.ParseIni.ReadSection" href="#IniParser.ParseIni.ParseIni.ReadSection">ReadSection</a></code></li>
 </ul>
 </li>
 </ul>

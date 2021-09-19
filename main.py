@@ -12,4 +12,8 @@ if __name__ == '__main__':
     
     
     """)
-    print(x.iniResult)
+    x = x.iniResult
+    x.DeleteProperty('general' , 'appname')
+    x.SetSection('newSec')
+    x.SetProperty('newSec' , ('salute' , 'saba7oo'))
+    print(x)
