@@ -1,17 +1,8 @@
+from turtle import pen
 from IniParser.ParseIni import ParseIni
 if __name__ == '__main__':
-    x = ParseIni( """
-    
-    [general]
-    appname = configparser
-    version = 0.1
-    
-    [author]
-    name = xmonader
-    email = notxmonader@gmail.com
-    
-    
-    """)
+    file = open('file.ini', 'r')
+    x = ParseIni(file.read())
     x = x.iniResult
     x.DeleteProperty('general' , 'appname')
     x.SetSection('newSec')
